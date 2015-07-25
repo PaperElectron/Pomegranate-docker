@@ -1,0 +1,26 @@
+{
+  "name": "pomegranate-docker",
+  "version": "1.0.0",
+  "description": "Pomegranate framework, containerized",
+  "main": "index.js",
+  "keywords": [
+    "Website"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaperElectron/Pomegranate-docker.git"
+  },
+  "author": "Jim <jim.b@paperelectron.com> (http://paperelectron.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PaperElectron/Pomegranate-docker/issues"
+  },
+  "homepage": "https://github.com/PaperElectron/Pomegranate-docker#readme",
+  "dependencies": {
+    "pomegranate": "^1.0.1",
+    "node-minify": "^1.2.0"
+  }
+}
