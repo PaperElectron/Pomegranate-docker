@@ -34,8 +34,8 @@ VOLUME $CONTENT_HOME
 RUN mkdir $APPLICATION_HOME && \
   chown -R paper "$PAPER_HOME"
 
+ADD index.js $APPLICATION_HOME/
 WORKDIR $APPLICATION_HOME
-
 RUN npm install pomegranate
 
 

@@ -7,7 +7,6 @@
 
 
 var pomegranate = require('pomegranate');
-var assetCompress = require('node-minify');
 var path = require('path');
 var userHome = process.env.HOME;
 
@@ -18,7 +17,7 @@ var options = {
 };
 
 
-options.basePath = userHome;
+options.basePath = path.join(userHome, 'content');
 
 
 pomegranate
