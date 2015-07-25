@@ -32,11 +32,15 @@ EXPOSE 8080
 VOLUME $CONTENT_HOME
 
 RUN mkdir $APPLICATION_HOME && \
-  chown -R paper "$PAPER_HOME"
+  mkdir $CONTENT_HOME
+
+
+ADD default_content/ $CONTENT_HOME
 
 ADD index.js $APPLICATION_HOME/
 WORKDIR $APPLICATION_HOME
-RUN npm install pomegranate
+RUN chown -R paper "$PAPER_HOME"
+RUN npm install pomegranate lodash
 
 
 CMD ["/sbin/my_init"]

@@ -8,7 +8,15 @@
 
 var pomegranate = require('pomegranate');
 var path = require('path');
+var _ = require('lodash');
 var userHome = process.env.HOME;
+
+try {
+  var loadOptions = require(path.join(userHome, 'options.json'))
+}
+catch (e){
+  console.log('No options file found.')
+};
 
 var options = {
   port: 8080,
