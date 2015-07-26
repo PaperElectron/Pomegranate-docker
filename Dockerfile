@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y nodejs && node -v && npm -v
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV POM_HOME /var/pom
-ENV APPLICATION_HOME $POM_HOME/pomegranate
 ENV CONTENT_HOME $POM_HOME/content
 
 # If you bind mount a volume from host/volume from a data container,
@@ -31,12 +30,10 @@ EXPOSE 8080
 
 VOLUME $CONTENT_HOME
 
-RUN mkdir $APPLICATION_HOME
-
 ADD default_content/ $CONTENT_HOME
 
-ADD index.js $APPLICATION_HOME/
-WORKDIR $APPLICATION_HOME
+ADD index.js $POM_HOME/
+WORKDIR $POM_HOME
 RUN chown -R pom "$POM_HOME"
 RUN npm install pomegranate lodash
 
