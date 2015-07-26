@@ -10,15 +10,16 @@ var pomegranate = require('pomegranate');
 var path = require('path');
 var _ = require('lodash');
 
+var options = {}
 // Comment the line below and uncomment the next line for development.
 
-//var userHome = process.env.HOME;
-var userHome = __dirname + '/default_content'
+var userHome = process.env.HOME;
+//var userHome = __dirname + '/default_content'
 
 
 try {
   var loadOptions = require(path.join(userHome, 'options.json'))
-  var options = _.omit(loadOptions, 'port', 'address', 'views', 'partials', 'routes', 'models', 'controllers', 'staticFiles')
+  options = _.omit(loadOptions, 'port', 'address', 'views', 'partials', 'routes', 'models', 'controllers', 'staticFiles')
 }
 catch (e){
   console.log(e);
@@ -29,8 +30,8 @@ options.port = 8080
 
 // Comment the line below and uncomment the next line for development.
 
-//options.basePath = path.join(userHome, 'content');
-options.basePath = path.join(userHome);
+options.basePath = path.join(userHome, 'content');
+//options.basePath = path.join(userHome);
 
 
 pomegranate
