@@ -9,23 +9,28 @@
 var pomegranate = require('pomegranate');
 var path = require('path');
 var _ = require('lodash');
-var userHome = process.env.HOME;
+
+// Comment the line below and uncomment the next line for development.
+
+//var userHome = process.env.HOME;
+var userHome = __dirname + '/default_content'
+
 
 try {
   var loadOptions = require(path.join(userHome, 'options.json'))
+  var options = _.omit(loadOptions, 'port', 'address', 'views', 'partials', 'routes', 'models', 'controllers', 'staticFiles')
 }
 catch (e){
+  console.log(e);
   console.log('No options file found.')
 };
 
-var options = {
-  port: 8080,
-  templating: 'jade',
-  renderErrors: true
-};
+options.port = 8080
 
+// Comment the line below and uncomment the next line for development.
 
-options.basePath = path.join(userHome, 'content');
+//options.basePath = path.join(userHome, 'content');
+options.basePath = path.join(userHome);
 
 
 pomegranate

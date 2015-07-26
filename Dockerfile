@@ -15,17 +15,17 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 RUN apt-get update && apt-get install -y nodejs && node -v && npm -v
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV PAPER_HOME /var/paper
-ENV APPLICATION_HOME $PAPER_HOME/pomegranate
-ENV CONTENT_HOME $PAPER_HOME/content
+ENV POM_HOME /var/pom
+ENV APPLICATION_HOME $POM_HOME/pomegranate
+ENV CONTENT_HOME $POM_HOME/content
 
 # If you bind mount a volume from host/volume from a data container,
 # ensure you use same uid
 
-RUN useradd -d "$PAPER_HOME" -u 1000 -m -s /bin/bash paper
+RUN useradd -d "$POM_HOME" -u 1000 -m -s /bin/bash pom
 
-RUN mkdir /etc/service/paper-web
-ADD paper-web.sh /etc/service/paper-web/run
+RUN mkdir /etc/service/pom-web
+ADD pom-web.sh /etc/service/pom-web/run
 
 EXPOSE 8080
 
@@ -37,7 +37,7 @@ ADD default_content/ $CONTENT_HOME
 
 ADD index.js $APPLICATION_HOME/
 WORKDIR $APPLICATION_HOME
-RUN chown -R paper "$PAPER_HOME"
+RUN chown -R pom "$POM_HOME"
 RUN npm install pomegranate lodash
 
 

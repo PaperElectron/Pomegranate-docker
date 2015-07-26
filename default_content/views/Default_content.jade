@@ -4,7 +4,48 @@ html
     title
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.min.css')
+    link(rel='stylesheet', href='/css/poole.css')
+    link(rel='stylesheet', href='/css/hyde.css')
+    link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Josefin+Slab:700")
+    link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface")
+    link(rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png")
+    link(rel="shortcut icon" href="favicon.ico")
   body
-    h1 Hello. This is the default content for pomegranate-docker
-    h2 You'll probably want to greate your own.
+    .sidebar
+      .container.sidebar-sticky
+        .sidebar-about
+          img(src='img/Pomegranate_icon.png')
+          h1
+            a(href="/")
+              | Pomegranate
+          p.lead Official Pomegranate docker container.
+          p  By: @paperElectron
+        nav.sidebar-nav
+          a.sidebar-nav-item(href='https://github.com/PaperElectron/Pomegranate') GitHub project
+          a.sidebar-nav-item(href='https://www.npmjs.com/package/pomegranate') On npm
+        small © 2015 Paper Electron LLC .
+        br
+        small All rights reserved.
+
+    .content.container
+      h1 Hi!
+      h5 It looks like you are running the "pomegranate-docker" container without mounting a volume in the container.
+      p Thats ok, we added this default content for just that reason. When you mount your own content,
+        | it will totally overwrite the default, so dont worry about that at all.
+
+      p Assuming you have already run something like this:
+
+      pre $ docker run -d -p 8080:8080 paperelectron/pomegranate-docker
+
+      p You are going to want to add a directory on your docker host, call it 'my_content' or whatever floats your boat.
+        | Add your routes, views, models, etc, to 'my_content', then start the 'paperelectron/pomegranate-docker' container
+        | using something like this:
+
+      pre docker run -d -p 8080:8080 \
+        | -v ~/pomegranate/my_content:/var/pom/content \
+        | paperelectron/pomegranate-docker
+
+      p A neat trick is to, is to store all of your pomegranate routes, models, views, etc. in a sepatate git repo.
+        | When developing locally, pass the path to this location to a pomegranite instance. Then when you want to update
+        | the docker container, simply merge your changes then stop and restart the 'paperelectron/pomegranate-docker'
+        | container.
