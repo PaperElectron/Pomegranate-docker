@@ -18,7 +18,7 @@ var userHome = process.env.HOME;
 
 
 try {
-  var loadOptions = require(path.join(userHome, 'options.json'))
+  var loadOptions = require(path.join(userHome, 'content','options.json'))
   options = _.omit(loadOptions, 'port', 'address', 'views', 'partials', 'routes', 'models', 'controllers', 'staticFiles')
 }
 catch (e){
